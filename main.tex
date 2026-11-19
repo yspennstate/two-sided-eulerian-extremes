@@ -1,0 +1,391 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\des}{\operatorname{des}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\stirl}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+
+\title[Extremes of the two-sided Eulerian statistic]{Extremes of the two-sided Eulerian statistic}
+\author{Yitzchak Shmalo}
+\address{Einstein Institute of Mathematics, The Hebrew University of Jerusalem,\newline Givat Ram, Jerusalem, Israel}
+
+\begin{document}
+\begin{abstract}
+Let $T_n=\des(\pi)+\des(\pi^{-1})$ for a uniform random permutation $\pi$ of size $n$, and let $M_n$ be the maximum of $k_n$ independent copies of $T_n$. We prove that $M_n$, centred and scaled with the mean, the standard deviation and the Gaussian extreme-value constants, converges to the standard Gumbel law if and only if $\log k_n=o(\sqrt n)$. When $\log k_n/\sqrt n\to c\in[0,\infty)$ the limit is the Gumbel law shifted by $-c^2/10$, and when $\sqrt n\ll\log k_n\ll n$ the normalised maximum tends to $-\infty$. A corrected centring gives the standard Gumbel limit for $\log k_n=o(n^{2/3})$, and a centring and scaling defined by the exact cumulant generating function give it for $\log k_n=o(n)$. The maxima of $\des(\pi_j)$ and of $\des(\pi_j^{-1})$ are asymptotically independent, and when $\log k_n/\sqrt n\to c$ each limit is the Gumbel law shifted by $-c^2/5$. This answers two questions of D\"orr and Heiny.
+\end{abstract}
+
+\subjclass[2020]{Primary 60G70; Secondary 05A05, 60F10}
+\keywords{two-sided Eulerian numbers, descents, inverse descents, extreme values, Gumbel distribution, moderate deviations}
+
+\maketitle
+
+\section{Introduction}
+
+For a permutation $\pi$ of $[n]$, the set of integers from $1$ to $n$, let $\des(\pi)$ be the number of $i<n$ with $\pi(i)>\pi(i+1)$. The joint distribution of $\des(\pi)$ and $\des(\pi^{-1})$, the two-sided Eulerian numbers, was found by Carlitz, Roselle and Scoville \cite{CRS66}; Petersen \cite{Pet13} gives an account. For uniform $\pi$, the two-sided Eulerian statistic
+\[
+T_n=\des(\pi)+\des(\pi^{-1})
+\]
+has mean $n-1$ and variance $(n+1)/6+(n-1)/n$. Vatutin \cite{Vat96} proved that the descent number and the major index of $\pi$, together with the same two statistics of $\pi^{-1}$, are jointly asymptotically normal, the pair for $\pi$ being asymptotically independent of the pair for $\pi^{-1}$; this gives a central limit theorem for $T_n$. Chatterjee and Diaconis \cite{CD17} computed the variance of $T_n$ and gave another proof of its asymptotic normality. Br\"uck and R\"ottger \cite{BR22} extended the central limit theorem to its analogue on finite Coxeter groups, and F\'eray \cite{Fer20} gave a shorter proof under weaker assumptions.
+
+Extremes of permutation statistics are studied in the following triangular-array form. For each $n$ let $Y_{n,1},\dots,Y_{n,k_n}$ be independent copies of a statistic of a uniform permutation of $[n]$, with mean $\mu_n$ and standard deviation $\varsigma_n$, and $M_n=\max_jY_{n,j}$. With the Gaussian extreme-value constants
+\begin{equation}\label{eq:ab}
+a_k=\frac1{\sqrt{2\log k}},\qquad b_k=\sqrt{2\log k}-\frac{\log\log k+\log(4\pi)}{2\sqrt{2\log k}},
+\end{equation}
+one asks for which $k_n\to\infty$
+\begin{equation}\label{eq:gumbel}
+\P\Bigl(\frac{M_n-\mu_n-\varsigma_nb_{k_n}}{\varsigma_na_{k_n}}\le x\Bigr)\to\exp(-e^{-x})\qquad(x\in\R).
+\end{equation}
+D\"orr and Kahle \cite[Theorem~13]{DK24} proved \eqref{eq:gumbel} for the number of inversions when $\log k_n=o(n^{1/3})$ and for the number of descents when $\log k_n=o(n^{1/2})$, on classical Weyl groups; D\"orr and Heiny \cite{DH25} proved that inversions and descents are jointly attracted to the bivariate Gumbel law with independent margins. In the last section of \cite{DH25} they note that the extreme value behaviour of $T_n$ is unknown, and that the joint extremes of $\des(\pi)$ and $\des(\pi^{-1})$ are another open problem. Theorems~\ref{thm:main} and~\ref{thm:joint} below answer both.
+
+Write $\ell_n=\log k_n$, and let $\Phi$ be the standard normal distribution function. Put $\sigma_n^2=(n+1)/6+(n-1)/n$, the variance of $T_n$ for $n\ge2$ (Lemma~\ref{lem:cumulants}), and let $m_n=(n-1)/2$ and $\tau_n^2=(n+1)/12$ be the mean and the variance of $\des(\pi)$.
+
+For descents, D\"orr and Kahle \cite[Theorem~13(b)]{DK24} prove \eqref{eq:gumbel} when $\ell_n=o(\sqrt n)$. The generating polynomial of $\des(\pi)$ has only real zeros, so $\des(\pi)$ has the law of a sum of independent Bernoulli variables, and a moderate-deviation theorem for such sums gives $\P(\des(\pi)-m_n>\tau_nz)\sim1-\Phi(z)$ for $z=o(n^{1/4})$ \cite[Theorem~10 and Remark~12]{DK24}. At the level $z\sim\sqrt{2\ell_n}$ that governs the maximum, this is the range $\ell_n=o(\sqrt n)$. The argument does not apply to $T_n$. For $n\ge3$ we have $\P(T_n=1)=0$ while $\P(T_n=0)$ and $\P(T_n=2)$ are positive, since $\des(\pi)=0$ only for the identity, and a sum of independent $\{0,1\}$-valued variables has no gap in its support. We use instead the transform of Bercu, Bonnefont, Fredes and Richou \cite[Lemma~6.1]{BBFR24}. It shows that the cumulant generating function $K_n$ of $T_n-(n-1)$ satisfies, for all $n$ and all complex $z$ with $|z|\le1/4$,
+\[
+K_n(z)=2(n+1)\log\frac{\sinh(z/2)}{z/2}+R_n(z,z),\qquad |R_n(z,z)|<0.09,
+\]
+and that $R_n(z,z)=z^2/2+O(1/n)$ there (Lemmas~\ref{lem:bound} and~\ref{lem:rate}). Hence $\kappa_4(T_n)=-n/60+O(1)$, and an exponential tilt, with Esseen's inequality applied under the tilted law, gives uniformly for $z\to\infty$ with $z=o(\sqrt n)$
+\begin{equation}\label{eq:tail}
+\log\frac{\P(T_n-(n-1)>\sigma_nz)}{1-\Phi(z)}=-\frac{z^4}{40n}+O\Bigl(\frac{z^6}{n^2}+\frac z{\sqrt n}+\frac1{z^2}\Bigr).
+\end{equation}
+At $z\sim\sqrt{2\ell_n}$ the quartic term $z^4/(40n)$ is $\ell_n^2/(10n)$ up to a factor $1+o(1)$. It tends to $0$, to $c^2/10$ or to infinity according as $\ell_n=o(\sqrt n)$, $\ell_n\sim c\sqrt n$ for a constant $c>0$, or $\sqrt n\ll\ell_n\ll n$, and these are the three cases of Theorem~\ref{thm:main}.
+
+\begin{theorem}\label{thm:main}
+Let $k_n\to\infty$, let $M_n$ be the maximum of $k_n$ independent copies of $T_n$, and put
+\[
+Z_n=\frac{M_n-(n-1)-\sigma_nb_{k_n}}{\sigma_na_{k_n}}.
+\]
+\begin{enumerate}
+\item[(a)] If $\ell_n/\sqrt n\to c\in[0,\infty)$, then $\P(Z_n\le x)\to\exp\bigl(-e^{-x-c^2/10}\bigr)$ for every $x\in\R$.
+\item[(b)] If $\sqrt n\ll\ell_n\ll n$, then $Z_n\to-\infty$ in probability.
+\item[(c)] If $\ell_n$ is not $o(n)$, then $Z_n$ has no continuous weak limit.
+\end{enumerate}
+In particular, $Z_n$ converges to the standard Gumbel law if and only if $\ell_n=o(\sqrt n)$.
+\end{theorem}
+
+By \eqref{eq:tail}, $z=o(n^{1/4})$ is the normality zone of $T_n$ in the language of mod-Gaussian convergence \cite[Proposition~4.14]{FMN16}, the range of $z$ in which $\P(T_n-(n-1)>\sigma_nz)\sim1-\Phi(z)$ (mod-Gaussian convergence of $T_n$ is shown at the end of Section~\ref{sec:transform}), and a Gaussian centring cannot work beyond it.
+Removing the quartic term from the centring restores the standard limit in a larger range.
+
+\begin{corollary}\label{cor:centring}
+If $\ell_n=o(n^{2/3})$, then \eqref{eq:gumbel} holds for $T_n$ with $b_{k_n}$ replaced by $b_{k_n}-a_{k_n}\ell_n^2/(10n)$.
+\end{corollary}
+
+\begin{corollary}\label{cor:implicit}
+Let $K_n(t)=\log\E e^{t(T_n-(n-1))}$. If $\ell_n\to\infty$ and $\ell_n=o(n)$, then for all large $n$ the equation
+\[
+tK_n'(t)-K_n(t)+\log\bigl(t\sqrt{2\pi K_n''(t)}\bigr)=\ell_n
+\]
+has a unique solution $t_n$ in $(0,1/32]$, $t_n\sim\sqrt{12\ell_n/n}$, and
+\[
+\P\bigl(t_n(M_n-n+1-K_n'(t_n))\le x\bigr)\to\exp(-e^{-x})\qquad(x\in\R).
+\]
+\end{corollary}
+
+For the two descent counts separately, $\des(\pi)$ and $\des(\pi^{-1})$ have the same law, with mean $m_n$ and variance $\tau_n^2$.
+
+\begin{theorem}\label{thm:joint}
+Let $\pi_1,\dots,\pi_{k_n}$ be independent uniform permutations of $[n]$, $k_n\to\infty$, and
+\[
+U_n=\frac{\max_j\des(\pi_j)-m_n-\tau_nb_{k_n}}{\tau_na_{k_n}},\qquad V_n=\frac{\max_j\des(\pi_j^{-1})-m_n-\tau_nb_{k_n}}{\tau_na_{k_n}}.
+\]
+If $\ell_n/\sqrt n\to c\in[0,\infty)$, then for all $x,y\in\R$
+\[
+\P(U_n\le x,\ V_n\le y)\to\exp\bigl(-e^{-x-c^2/5}-e^{-y-c^2/5}\bigr).
+\]
+If $\sqrt n\ll\ell_n\ll n$, then $U_n$ and $V_n$ tend to $-\infty$ in probability, and if $\ell_n$ is not $o(n)$, then neither has a continuous weak limit. Hence $(U_n,V_n)$ converges to a pair of independent standard Gumbel variables if and only if $\ell_n=o(\sqrt n)$.
+\end{theorem}
+
+The sufficiency of $\ell_n=o(\sqrt n)$ for each margin of Theorem~\ref{thm:joint} is the descent case of \cite[Theorem~13(b)]{DK24}. For a fixed margin, the shift $c^2/5$ reflects the precise deviations of $\des(\pi)$ at the edge of its normality zone, which follow from \cite[Proposition~4.1]{HST24} and \cite[Theorems~4.3 and~4.8]{FMN16}. At the scale of the central limit theorem, $\des(\pi)$ and $\des(\pi^{-1})$ are asymptotically independent by Vatutin's theorem \cite{Vat96}. The new parts of Theorem~\ref{thm:joint} are the extreme-value form of the converse and of the shift, and the asymptotic independence of the two maxima.
+
+Bercu, Bonnefont, Fredes and Richou obtained their transform of $(\des(\pi),\des(\pi^{-1}))$ from the generating function of \cite{CRS66} and used it to prove sharp large deviations for this pair: for fixed $x,y\in(1/2,1)$ they determine $\P(\des(\pi)\ge x(n-1),\ \des(\pi^{-1})\ge y(n-1))$ up to a factor $1+o(1)$ \cite[Theorem~4.2]{BBFR24}, and they derive a large deviation principle for $T_n/n$ \cite[Corollary~4.2]{BBFR24}. These concern deviations of order $n$ from the mean, while the maximum of $k_n$ copies with $\ell_n=o(n)$ lies at distance $o(n)$ from it.
+
+By \eqref{eq:K} and Lemma~\ref{lem:rate}, $T_n-(n-1)$ satisfies the quasi-power hypothesis of Hwang \cite{Hwa96}: $\E e^{z(T_n-(n-1))}=e^{\phi(n)f_1(z)+f_2(z)}(1+O(1/\omega_n))$ uniformly on a disc, with $\phi(n)=n+1$, $f_1(z)=2\log(\sinh(z/2)/(z/2))$, $f_2(z)=z^2/2$ and $\omega_n=n$. Under this hypothesis and a condition on the speed $\omega_n$, Hwang's theorem \cite[Theorem~1]{Hwa96} gives an equivalent of the upper tail in Cram\'er's form at deviations $o(\phi(n))$ from the mean \cite[Remark~1.2]{FMN16}. Here the speed $\omega_n=n$ is of the order of $\phi(n)$, and if the condition holds his theorem gives the tail behind Theorem~\ref{thm:main}, with exponent $-z^2/2-z^4/(40n)+O(z^6/n^2)$ for $z=o(\sqrt n)$; Proposition~\ref{prop:tail} proves \eqref{eq:tail} directly from the bound on $R_n$, with the explicit error terms that Corollary~\ref{cor:centring} uses. In the language of F\'eray, M\'eliot and Nikeghbali \cite{FMN16}, $(T_n-(n-1))/n^{1/4}$ converges in the mod-Gaussian sense with parameters $\sigma_n^2/\sqrt n$ and limiting function $\exp(-z^4/1440)$ (end of Section~\ref{sec:transform}); for $\des(\pi)$, mod-Gaussian convergence with a quartic limiting function, in a different normalisation, is \cite[Proposition~4.1]{HST24}. The precise deviations of \cite[Theorems~4.3 and~4.8]{FMN16} give \eqref{eq:tail} with error $o(1)$ for $z=o(n^{1/4})$ and, for each fixed $x>0$, at $z=xn^{1/4}$. The first range gives Theorem~\ref{thm:main}(a) with $c=0$. The case $\ell_n\sim c\sqrt n$ with $c>0$ needs \eqref{eq:tail} at a level $z_n$ with $z_n/n^{1/4}\to\sqrt{2c}$, which is not a fixed multiple of $n^{1/4}$, and Proposition~\ref{prop:tail} gives it uniformly.
+
+What the paper adds is the following. The transform places $T_n$ in the quasi-power class with a remainder bounded uniformly in $n$, and gives $\kappa_4(T_n)=-n/60+O(1)$. Proposition~\ref{prop:tail} gives \eqref{eq:tail} with explicit error terms, uniformly for $z\to\infty$ with $z=o(\sqrt n)$. From these, Theorem~\ref{thm:main} gives the threshold $\ell_n\asymp\sqrt n$, the shift $c^2/10$ and the failure of the Gumbel limit for $\sqrt n\ll\ell_n\ll n$, and Corollaries~\ref{cor:centring} and~\ref{cor:implicit} give the two corrected normalisations. Theorem~\ref{thm:joint} rests in addition on a joint bound: the probability that $\des(\pi)$ and $\des(\pi^{-1})$ both exceed the levels of Theorem~\ref{thm:joint} is at most $\exp(-2\ell_n+O(\log\ell_n+\ell_n^2/n+1))$ (Section~\ref{sec:joint}). This bound makes the two maxima asymptotically independent, although the covariance of $\des(\pi)$ and $\des(\pi^{-1})$ is $(n-1)/(2n)$. The proof of \eqref{eq:tail} is an exponential tilt with Esseen's smoothing inequality under the tilted law (Section~\ref{sec:tails}), and the theorems and corollaries follow from the size of its errors (Sections~\ref{sec:max}--\ref{sec:joint}).
+
+\section{The transform and an analytic remainder}\label{sec:transform}
+
+Let $\stirl{n}{j}$ denote the unsigned Stirling numbers of the first kind, and for $0\le r\le n-1$ put
+\[
+A_{n,r}=\stirl{n}{n-r}\Bigl(\frac{(n-r)!}{n!}\Bigr)^2.
+\]
+For $m\ge1$ and $|z|<2\pi$ let
+\[
+w_m(z)=\sum_{j\in\Z\setminus\{0\}}\Bigl(\frac{z}{z+2\pi ij}\Bigr)^{m+1},\qquad h(z)=\log\frac{\sinh(z/2)}{z/2},
+\]
+with $h(0)=0$ and the branch of the logarithm analytic on $|z|<2\pi$, where $\sinh(z/2)/(z/2)$ has no zeros. The series converges absolutely and locally uniformly, and $w_m$ is even (replace $j$ by $-j$).
+
+\begin{lemma}[{\cite[Lemma~6.1]{BBFR24}}]\label{lem:transform}
+Let $D=\des(\pi)-m_n$ and $D'=\des(\pi^{-1})-m_n$. For complex $s,t$ with $|s|,|t|<2\pi$,
+\begin{equation}\label{eq:transform}
+\E e^{sD+tD'}=\exp\bigl((n+1)(h(s)+h(t))\bigr)S_n(s,t),
+\end{equation}
+where
+\[
+S_n(s,t)=\sum_{r=0}^{n-1}A_{n,r}(st)^r\bigl(1+w_{n-r}(s)\bigr)\bigl(1+w_{n-r}(t)\bigr).
+\]
+\end{lemma}
+
+In \cite{BBFR24} the identity is stated for real $s,t$ and uncentred variables; multiplying by $e^{-(s+t)m_n}$ turns their prefactor into $\exp((n+1)(h(s)+h(t)))$. Both sides of \eqref{eq:transform} are analytic on the bidisc $|s|,|t|<2\pi$, so the identity extends to it.
+
+\begin{lemma}\label{lem:bound}
+$0\le A_{n,r}\le1/r!$ for all $n$ and $r$, and $A_{n,0}=1$. For $|s|,|t|\le\rho=1/4$,
+\[
+|S_n(s,t)-1|<0.08.
+\]
+\end{lemma}
+
+\begin{proof}
+The bound $A_{n,r}\le1/r!$ is \cite[Lemma~6.2]{BBFR24}, and $A_{n,0}=1$ since $\stirl nn=1$. For $|z|\le\rho$ and $j\ne0$ we have $|z/(z+2\pi ij)|\le\rho/(2\pi|j|-\rho)<1$, and $m+1\ge2$, so
+\[
+|w_m(z)|\le2\sum_{j\ge1}\Bigl(\frac{\rho}{2\pi j-\rho}\Bigr)^2\le2\zeta(2)\Bigl(\frac{\rho}{2\pi-\rho}\Bigr)^2=:\delta<0.0057.
+\]
+Hence $|S_n(s,t)-1|\le(1+\delta)^2\sum_{r\ge0}\rho^{2r}/r!-1=(1+\delta)^2e^{\rho^2}-1<0.077$.
+\end{proof}
+
+Consequently $R_n(s,t)=\log S_n(s,t)$, with $R_n(0,0)=0$, is analytic on the closed bidisc of radius $\rho$ and bounded there by $-\log(1-0.08)<0.09$, uniformly in $n$. By Cauchy's estimates, every partial derivative of fixed order of $R_n$ is bounded uniformly in $n$ on the bidisc of radius $\rho/2$. Setting $s=t=z$, the cumulant generating function $K_n$ of $T_n-(n-1)=D+D'$ (as in Corollary~\ref{cor:implicit}) is
+\begin{equation}\label{eq:K}
+K_n(z)=2(n+1)h(z)+R_n(z,z),
+\end{equation}
+and setting $t=0$ that of $D$ is
+\begin{equation}\label{eq:KD}
+K_n^{D}(z)=(n+1)h(z)+\log\bigl(1+w_n(z)\bigr).
+\end{equation}
+Both are even, so all odd cumulants vanish.
+
+\begin{lemma}\label{lem:cumulants}
+For $n\ge2$, $\operatorname{Var}T_n=(n+1)/6+(n-1)/n$ \cite{CD17} and $\operatorname{Var}\des(\pi)=(n+1)/12$. For $n\ge4$,
+\[
+\kappa_4(T_n)=-\frac{n+1}{60}+\frac{2n^2-7n+3}{n^2(n-1)},\qquad \kappa_4(\des(\pi))=-\frac{n+1}{120}.
+\]
+\end{lemma}
+
+\begin{proof}
+We have $h(z)=z^2/24-z^4/2880+O(z^6)$, and $w_m(z)=O(z^{m+1})$. For $n\ge4$ no factor $1+w_{n-r}$ in $S_n(z,z)$ contributes to degree at most $4$, so $S_n(z,z)=1+A_{n,1}z^2+A_{n,2}z^4+O(z^6)$ and $\log S_n(z,z)=A_{n,1}z^2+(A_{n,2}-A_{n,1}^2/2)z^4+O(z^6)$. Here $A_{n,1}=\binom n2/n^2=(n-1)/(2n)$, and $\stirl{n}{n-2}=n(n-1)(n-2)(3n-1)/24$ gives $A_{n,2}=(n-2)(3n-1)/(24n(n-1))$. The variance is $2(2(n+1)/24+A_{n,1})$, and $\kappa_4=24\bigl(2(n+1)(-1/2880)+A_{n,2}-A_{n,1}^2/2\bigr)$, which simplifies to the stated value. For $n=2,3$ the variance follows from $A_{n,1}$ in the same way, since $w_{n}$ and $z^2w_{n-1}$ have degree at least $4$. The values for $\des(\pi)$ follow from \eqref{eq:KD} in the same way.
+\end{proof}
+
+In particular $\kappa_4(T_n)=-n/60+O(1)$ and, uniformly for real $t\to0$,
+\begin{equation}\label{eq:Kexp}
+K_n(t)=\frac{\sigma_n^2t^2}2+\frac{\kappa_4(T_n)t^4}{24}+O(nt^6),
+\end{equation}
+together with the expansions obtained by differentiating term by term, which hold because the derivatives of $R_n$ are uniformly bounded.
+
+For complex $z$ with $|z|\le\rho n^{1/4}/2$, put $w=zn^{-1/4}$. Since $h(w)=w^2/24-w^4/2880+O(|w|^6)$ and $R_n(w,w)$ is even with $R_n(0,0)=0$ and bounded derivatives, $R_n(w,w)=O(|w|^2)$ uniformly in $n$, and \eqref{eq:K} gives
+\[
+K_n\bigl(zn^{-1/4}\bigr)-\frac{\sigma_n^2}{\sqrt n}\,\frac{z^2}2=-\frac{z^4}{1440}+O\Bigl(\frac{|z|^2+|z|^4+|z|^6}{\sqrt n}\Bigr).
+\]
+So $(T_n-(n-1))/n^{1/4}$ converges in the mod-Gaussian sense with parameters $\sigma_n^2/\sqrt n$ and limiting function $\exp(-z^4/1440)$: that is, $\E\exp\bigl(z(T_n-(n-1))/n^{1/4}\bigr)\exp\bigl(-\sigma_n^2z^2/(2\sqrt n)\bigr)\to\exp(-z^4/1440)$ locally uniformly in $z\in\mathbb{C}$.
+
+From here on, $C$ denotes a positive constant independent of $n$ and of the other parameters, whose value may change from line to line.
+
+\begin{lemma}\label{lem:rate}
+Uniformly for $|z|\le\rho$, $R_n(z,z)=z^2/2+O(1/n)$.
+\end{lemma}
+
+\begin{proof}
+By the definition of the Stirling numbers, $\stirl{n}{n-r}=e_r$, the $r$-th elementary symmetric function of $1,\dots,n-1$. Put $\Gamma_1=\sum_{i<n}i=n(n-1)/2$ and $\Gamma_2=\sum_{i<n}i^2\le n^3/3$. Expanding $\Gamma_1^r$ over ordered $r$-tuples, the tuples with distinct entries contribute $r!\,e_r$, and the others at most $\binom r2\Gamma_2\Gamma_1^{r-2}$, so $1-\binom r2\Gamma_2/\Gamma_1^2\le r!\,e_r/\Gamma_1^r\le1$, where $\Gamma_2/\Gamma_1^2\le C/n$. Moreover
+\[
+2^rr!\,A_{n,r}=\frac{r!\,e_r}{\Gamma_1^r}\prod_{i=0}^{r-1}\frac{n(n-1)}{(n-i)^2},
+\]
+and for $r\le\sqrt n$ the product is $1+O(r^2/n)$. Hence $|A_{n,r}-1/(2^rr!)|\le Cr^2/(n\,r!)$ for $r\le\sqrt n$; for $r>\sqrt n$ the same bound follows from $A_{n,r}\le1/r!$ (Lemma~\ref{lem:bound}). For $|z|\le\rho$ put $q_j=\rho/(2\pi j-\rho)$; then $q_j\le q_1<1/20$ and $|w_m(z)|\le2\sum_{j\ge1}q_j^{m+1}\le\delta q_1^{m-1}$, with $\delta$ as in the proof of Lemma~\ref{lem:bound}. Write
+\[
+S_n(z,z)-e^{z^2/2}=\sum_{r<n}\Bigl(A_{n,r}-\frac1{2^rr!}\Bigr)z^{2r}+\sum_{r<n}A_{n,r}z^{2r}\bigl((1+w_{n-r}(z))^2-1\bigr)-\sum_{r\ge n}\frac{z^{2r}}{2^rr!}.
+\]
+The first sum is at most $(C/n)\sum_rr^2\rho^{2r}/r!$. In the second, $|(1+w_{n-r}(z))^2-1|\le3\delta q_1^{n-r-1}$, so the terms with $r\le n/2$ contribute at most $3\delta q_1^{n/2-1}e^{\rho^2}$ and the others at most $3\delta\sum_{r>n/2}\rho^{2r}/r!$. The third sum is smaller still. So $S_n(z,z)=e^{z^2/2}+O(1/n)$. Both $S_n(z,z)$ and $e^{z^2/2}$ lie in the disc of radius $0.08$ about $1$, on which the principal logarithm is Lipschitz with constant $1/0.92$, and $R_n(z,z)$ is the principal logarithm of $S_n(z,z)$. Hence $R_n(z,z)=z^2/2+O(1/n)$.
+\end{proof}
+
+\section{Tails under a small exponential tilt}\label{sec:tails}
+
+We carry out the argument for $X_n=T_n-(n-1)$ and $K_n$; it applies without change to $D=\des(\pi)-m_n$ and $K_n^D$. It uses only the bound on $R_n$ from Section~\ref{sec:transform}, uniform in $n$, and gives \eqref{eq:tail} with explicit error terms, which the corollaries use.
+
+By \eqref{eq:K}, for all large $n$ we have $n/C\le K_n''(t)\le Cn$ for real $|t|\le\rho/8$, and $|K_n'''(w)|\le Cn$ for complex $|w|\le\rho/2$. For real $|t|\le\rho/8$ let $\P_t$ be the tilted law $d\P_t/d\P=\exp(tX_n-K_n(t))$; under $\P_t$ the variable $X_n$ has mean $K_n'(t)$ and variance $v=K_n''(t)$.
+
+\begin{lemma}\label{lem:tilt}
+Let $Q=(X_n-K_n'(t))/\sqrt v$. Then $\sup_{y\in\R}|\P_t(Q\le y)-\Phi(y)|\le C/\sqrt n$, uniformly in $|t|\le\rho/8$.
+\end{lemma}
+
+\begin{proof}
+For real $u$ the characteristic function of $Q$ under $\P_t$ is $\exp(\psi(u))$ with
+\[
+\psi(u)=K_n(t+iu/\sqrt v)-K_n(t)-iuK_n'(t)/\sqrt v.
+\]
+If $|u|\le\eta\sqrt n$ with $\eta>0$ small enough, then $|u|/\sqrt v\le\rho/4$, and Taylor's formula with the bound on $K_n'''$ gives $\psi(u)=-u^2/2+E(u)$ with $|E(u)|\le C|u|^3/\sqrt n$. Decreasing $\eta$, we may assume $|E(u)|\le u^2/4$, so both $\psi(u)$ and $-u^2/2$ have real part at most $-u^2/4$, and the segment between them as well. Therefore $|e^{\psi(u)}-e^{-u^2/2}|\le C|u|^3e^{-u^2/4}/\sqrt n$. Esseen's smoothing inequality \cite[Section~XVI.3, Lemma~2]{Fel71} with cutoff $\eta\sqrt n$ gives
+\[
+\sup_y|\P_t(Q\le y)-\Phi(y)|\le\frac1\pi\int_{-\eta\sqrt n}^{\eta\sqrt n}\frac{|e^{\psi(u)}-e^{-u^2/2}|}{|u|}\,du+\frac{24}{\pi\sqrt{2\pi}\,\eta\sqrt n}\le\frac C{\sqrt n}.\qedhere
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:tail}
+Uniformly for $z\to\infty$ with $z=o(\sqrt n)$, \eqref{eq:tail} holds, and the same holds with $\ge$ in place of $>$. For $\des(\pi)$, with $m_n,\tau_n$ in place of $n-1,\sigma_n$, the same holds with $-z^4/(20n)$ in place of $-z^4/(40n)$.
+\end{proposition}
+
+\begin{proof}
+Let $y=\sigma_nz$. Since $K_n'$ is increasing, by \eqref{eq:Kexp} there is a unique $t>0$ with $K_n'(t)=y$, and
+\[
+t=\frac z{\sigma_n}\Bigl(1+O\Bigl(\frac{z^2}n\Bigr)\Bigr),\qquad H:=t\sqrt{K_n''(t)}=z\Bigl(1+O\Bigl(\frac{z^2}n\Bigr)\Bigr).
+\]
+In particular $t\to0$, so $t\le\rho/8$ for large $n$. With $Q$ as in Lemma~\ref{lem:tilt}, the tilt gives exactly
+\[
+\P(X_n\ge y)=e^{K_n(t)-ty}\,\E_t\bigl[e^{-HQ}\mathbf 1_{\{Q\ge0\}}\bigr].
+\]
+The function $g(w)=e^{-Hw}\mathbf 1_{\{w\ge0\}}$ has total variation $2$ on $\R$, so integrating by parts against the difference of distribution functions and using Lemma~\ref{lem:tilt} (also at left limits) gives $\E_t g(Q)=\E g(N)+O(n^{-1/2})$ for a standard normal $N$. Moreover $\E g(N)=e^{H^2/2}(1-\Phi(H))=(1+O(H^{-2}))/(\sqrt{2\pi}H)$, and $H/\sqrt n\to0$, so
+\[
+\P(X_n\ge y)=\frac{e^{K_n(t)-ty}}{\sqrt{2\pi}\,H}\Bigl(1+O\Bigl(\frac1{z^2}+\frac z{\sqrt n}\Bigr)\Bigr).
+\]
+The function $w\mapsto e^{-Hw}\mathbf 1_{\{w>0\}}$ also has total variation $2$, which gives the same estimate for $\P(X_n>y)$.
+
+Next, put $q=z/\sigma_n$. Then $t-q=O(q^3)$, and comparing $ty-K_n(t)=\max_s(sy-K_n(s))$ with its quadratic part at $q$ using \eqref{eq:Kexp}, we get
+\[
+ty-K_n(t)=\frac{z^2}2-\frac{\kappa_4(T_n)z^4}{24\sigma_n^4}+O\Bigl(\frac{z^6}{n^2}\Bigr).
+\]
+By Lemma~\ref{lem:cumulants}, $\kappa_4(T_n)/(24\sigma_n^4)=-1/(40n)+O(n^{-2})$. Finally $H=z(1+O(z^2/n))$ and $z^2/n\le z/\sqrt n$, and Mills' ratio gives $1-\Phi(z)=e^{-z^2/2}(1+O(z^{-2}))/(\sqrt{2\pi}z)$. Combining these, and using $z^4/n^2\le z^6/n^2$ for $z\ge1$, proves \eqref{eq:tail}. For $\des(\pi)$, Lemma~\ref{lem:cumulants} gives $\kappa_4/(24\tau_n^4)=-1/(20n)+O(n^{-2})$.
+\end{proof}
+
+Dividing the error terms in \eqref{eq:tail} by $z^4/n$ gives $z^2/n+\sqrt n/z^3+n/z^6$. Thus the logarithm in \eqref{eq:tail} tends to $0$ if $z=o(n^{1/4})$; if $z/n^{1/4}$ tends to a limit $\lambda\in(0,\infty)$, it tends to $-\lambda^4/40$; and it equals $-(z^4/(40n))(1+o(1))$ if $n^{1/4}\ll z\ll\sqrt n$.
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:max}
+
+Put $z_n(x)=b_{k_n}+a_{k_n}x$ and $p_n(x)=\P(T_n-(n-1)>\sigma_nz_n(x))$. Then $z_n(x)\sim\sqrt{2\ell_n}$, $z_n(x)^2=2\ell_n+O(\log\ell_n)$, and the definition \eqref{eq:ab} gives the classical relation
+\begin{equation}\label{eq:normalk}
+k_n\bigl(1-\Phi(z_n(x))\bigr)\to e^{-x}.
+\end{equation}
+Since the copies are independent, $\P(Z_n\le x)=(1-p_n(x))^{k_n}$, and whenever the product $k_np_n(x)$ tends to a limit $L\in[0,\infty)$, this tends to $e^{-L}$.
+
+(a) Let $\ell_n/\sqrt n\to c<\infty$. Then $z=z_n(x)=o(\sqrt n)$, the error terms in \eqref{eq:tail} are $O(n^{-1/2})$, $o(1)$ and $o(1)$, and $z^4/(40n)=(4\ell_n^2+O(\ell_n\log\ell_n))/(40n)\to c^2/10$. By \eqref{eq:tail} and \eqref{eq:normalk}, $k_np_n(x)\to e^{-x-c^2/10}$.
+
+(b) Let $\sqrt n\ll\ell_n\ll n$. Then $n^{1/4}\ll z\ll\sqrt n$, and by \eqref{eq:tail} and \eqref{eq:normalk}, $\log(k_np_n(x))=-(\ell_n^2/(10n))(1+o(1))\to-\infty$. Hence $\P(Z_n\le x)\to1$ for every $x$.
+
+(c) The variable $Z_n$ takes values in a translate of the lattice $\Delta_n\Z$ with $\Delta_n=1/(\sigma_na_{k_n})=\sqrt{2\ell_n}/\sigma_n$. Suppose $Z_n$ converges weakly to a continuous law $G$ and $\Delta_n\ge\varepsilon>0$ along a subsequence. The support of $G$ has no isolated points and is uncountable, while the endpoints of the components of its complement are countable, so it contains a point $\beta$ such that $G(\beta-\varepsilon/2,\beta)>0$ and $G(\beta,\beta+\varepsilon/2)>0$. Each $Z_n$ in the subsequence has at most one atom in $(\beta-\varepsilon/2,\beta+\varepsilon/2)$, so one of $\P(Z_n\in(\beta-\varepsilon/2,\beta))$ and $\P(Z_n\in(\beta,\beta+\varepsilon/2))$ is zero, and infinitely often the same one. Both intervals are continuity sets of $G$, which contradicts weak convergence. Hence $\Delta_n\to0$, and since $\sigma_n^2\sim n/6$ this means $\ell_n=o(n)$.
+
+Finally, if $Z_n$ converges to the standard Gumbel law, then $\ell_n=o(n)$ by (c). If $\ell_n/\sqrt n$ did not tend to $0$, some subsequence would have $\ell_n/\sqrt n\to c\in(0,\infty]$, and along it (a) gives the shifted law $\exp(-e^{-x-c^2/10})\ne\exp(-e^{-x})$ or (b) gives escape to $-\infty$; both are impossible. Conversely $\ell_n=o(\sqrt n)$ is (a) with $c=0$. \qed
+
+
+\section{Proofs of the corollaries}\label{sec:cor}
+
+\begin{proof}[Proof of Corollary~\ref{cor:centring}]
+Let $d_n=\ell_n^2/(10n)$ and $z^*=z_n(x)-a_{k_n}d_n$. Since $\ell_n=o(n^{2/3})$ we have $a_{k_n}d_n=O(\ell_n^{3/2}/n)\to0$, so $z^*\sim\sqrt{2\ell_n}=o(\sqrt n)$. By Mills' ratio,
+\[
+\log\frac{1-\Phi(z^*)}{1-\Phi(z_n(x))}=z_n(x)a_{k_n}d_n+O\bigl(a_{k_n}^2d_n^2+\ell_n^{-1}\bigr)=d_n+O\Bigl(\frac{\ell_n\log\ell_n}n+\frac{\ell_n^3}{n^2}+\frac1{\ell_n}\Bigr),
+\]
+using $z_n(x)a_{k_n}=1+O(\log\ell_n/\ell_n)$. By \eqref{eq:tail} at $z^*$, the quartic term is $-(z^*)^4/(40n)=-d_n+O(\ell_n\log\ell_n/n+\ell_n^3/n^2)$, and the remaining error terms are $O(\ell_n^3/n^2+\ell_n^{1/2}/\sqrt n+\ell_n^{-1})$. All of these tend to $0$ when $\ell_n=o(n^{2/3})$. Hence $k_n\P(T_n-(n-1)>\sigma_nz^*)\to e^{-x}$, and independence gives the claim.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:implicit}]
+Let $F(t)=tK_n'(t)-K_n(t)+\log(t\sqrt{2\pi K_n''(t)})$ on $(0,1/32]$. For large $n$, $n/C\le K_n''(t)\le Cn$ and $K_n'''(t)=O(nt)$ there (the third derivative is odd and its derivative is $O(n)$), so
+\[
+F'(t)=tK_n''(t)+\frac1t+\frac{K_n'''(t)}{2K_n''(t)}>0.
+\]
+Also $F(t)\to-\infty$ as $t\to0^+$, and $F(1/32)\ge n/C>\ell_n$ for large $n$ since $\ell_n=o(n)$. So $F(t)=\ell_n$ has a unique solution $t_n$. By \eqref{eq:Kexp}, $F(t)=\sigma_n^2t^2(1+O(t^2))/2+\log(t\sigma_n)+O(1)$. Hence $t_n\to0$, and $\sigma_n^2t_n^2/2+\log(t_n\sigma_n)=\ell_n(1+o(1))$ gives $t_n\sigma_n\sim\sqrt{2\ell_n}$, that is $t_n\sim\sqrt{2\ell_n}/\sigma_n\sim\sqrt{12\ell_n/n}$; moreover $H_n=t_n\sqrt{K_n''(t_n)}\sim\sqrt{2\ell_n}\to\infty$ and $H_n=o(\sqrt n)$.
+
+Let $y_n=K_n'(t_n)$ and $\Lambda(y)=\sup_\theta(\theta y-K_n(\theta))$. The proof of Proposition~\ref{prop:tail} shows
+\[
+\P(X_n>y)=\frac{e^{-\Lambda(y)}(1+o(1))}{\sqrt{2\pi}\,\theta_y\sqrt{K_n''(\theta_y)}},
+\]
+where $\theta_y$ solves $K_n'(\theta_y)=y$, uniformly when $\theta_y\sqrt{K_n''(\theta_y)}\to\infty$ and $\theta_y\to0$. At $y=y_n$ this and the definition of $t_n$ give $k_n\P(X_n>y_n)\to1$. For fixed $x$, $\Lambda'=\theta_y$ and $\Lambda''=1/K_n''(\theta_y)$, so
+\[
+\Lambda(y_n+x/t_n)=\Lambda(y_n)+x+O\Bigl(\frac{1}{t_n^2n}\Bigr)=\Lambda(y_n)+x+O(\ell_n^{-1}),
+\]
+and $\theta_y\sqrt{K_n''(\theta_y)}$ changes by a factor $1+o(1)$. Hence $k_n\P(X_n>y_n+x/t_n)\to e^{-x}$, and independence gives the claim.
+\end{proof}
+
+\section{Joint maxima of descents and inverse descents}\label{sec:joint}
+
+\begin{proof}[Proof of Theorem~\ref{thm:joint}]
+The marginal statements follow from Proposition~\ref{prop:tail} for $\des(\pi)$ exactly as in Section~\ref{sec:max}, with the quartic term $z^4/(20n)\to c^2/5$; by symmetry the same holds for $\des(\pi^{-1})$.
+
+Fix $x,y$, let $u_n=\tau_nz_n(x)$, $u_n'=\tau_nz_n(y)$, and let
+\[
+\alpha_n=\P(D>u_n),\qquad \beta_n=\P(D'>u_n'),\qquad \gamma_n=\P(D>u_n,\ D'>u_n').
+\]
+Put $s=u_n/\tau_n^2$ and $t=u_n'/\tau_n^2$. These tend to $0$ because $\ell_n=o(n)$, so for large $n$ they lie in $[0,\rho]$, and by Markov's inequality, \eqref{eq:transform} and Lemma~\ref{lem:bound},
+\[
+\log \gamma_n\le(n+1)(h(s)+h(t))+0.09-su_n-tu_n'.
+\]
+Since $(n+1)h(s)=\tau_n^2s^2/2+O(ns^4)$, the right side is $-(z_n(x)^2+z_n(y)^2)/2+O(\ell_n^2/n+1)=-2\ell_n+O(\log\ell_n+\ell_n^2/n+1)$. As $\ell_n=o(n)$, this gives $k_n\gamma_n\to0$.
+
+The events $\{\des(\pi_j)>m_n+u_n\}\cup\{\des(\pi_j^{-1})>m_n+u_n'\}$ are independent in $j$ and each has probability $\alpha_n+\beta_n-\gamma_n$, so
+\[
+\P(U_n\le x,\ V_n\le y)=(1-\alpha_n-\beta_n+\gamma_n)^{k_n}.
+\]
+If $\ell_n/\sqrt n\to c<\infty$, the marginal step gives $k_n\alpha_n\to e^{-x-c^2/5}$ and $k_n\beta_n\to e^{-y-c^2/5}$, and with $k_n\gamma_n\to0$ this proves the joint limit. If $\ell_n$ is not $o(n)$, the argument of Theorem~\ref{thm:main}(c) applies to $U_n$ and to $V_n$, which take values in translates of $\Delta_n'\Z$ with $\Delta_n'=\sqrt{2\ell_n}/\tau_n$. The equivalence then follows as at the end of Section~\ref{sec:max}.
+\end{proof}
+
+\section*{Acknowledgments and funding}
+
+The research presented in this paper was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme (grant agreement No.~101041711) and by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning. It was also supported by Heights Labs, by Convex Nexus Capital and by the Israel Science Foundation (ISF grants 2258/19 and 4101/25).
+
+This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}. The method is described in~\cite{MathBrainPaper}.
+
+\section*{Declaration of competing interest}
+
+The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital. These entities are included in the funding declaration above.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+
+This paper is part of a broader research project on proving open problems with AI systems. The results, proofs and text were produced with generative AI systems. OpenAI's Codex produced the proofs, and a separate Codex run audited them. Anthropic's Claude (Opus~5.5) wrote the text. The exact transform is due to Bercu, Bonnefont, Fredes and Richou \cite{BBFR24}. The extreme-value framework and the sufficiency for one descent count are due to D\"orr and Kahle \cite{DK24}, and the questions to D\"orr and Heiny \cite{DH25}. These results are theirs. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Data and code availability}
+
+No data were generated or analysed in this work.
+
+\begin{thebibliography}{99}
+
+\bibitem{BBFR24}
+B.~Bercu, M.~Bonnefont, L.~Fredes and A.~Richou, Sharp analysis on the joint distribution of the number of descents and inverse descents in a random permutation, preprint, 2024. \url{https://arxiv.org/abs/2405.13439}
+
+\bibitem{BR22}
+B.~Br\"uck and F.~R\"ottger, A central limit theorem for the two-sided descent statistic on Coxeter groups, \emph{Electron. J. Combin.} \textbf{29}(1) (2022), Paper No.~P1.1. \url{https://doi.org/10.37236/10744}
+
+\bibitem{CRS66}
+L.~Carlitz, D.~P.~Roselle and R.~A.~Scoville, Permutations and sequences with repetitions by number of increases, \emph{J. Combin. Theory} \textbf{1} (1966), 350--374. \url{https://doi.org/10.1016/S0021-9800(66)80057-1}
+
+\bibitem{CD17}
+S.~Chatterjee and P.~Diaconis, A central limit theorem for a new statistic on permutations, \emph{Indian J. Pure Appl. Math.} \textbf{48} (2017), 561--573. \url{https://doi.org/10.1007/s13226-017-0246-3}
+
+\bibitem{DH25}
+P.~D\"orr and J.~Heiny, Joint extremes of inversions and descents of random permutations, \emph{J. Theoret. Probab.} \textbf{38} (2025), Paper No.~42. \url{https://doi.org/10.1007/s10959-025-01407-y}
+
+\bibitem{DK24}
+P.~D\"orr and T.~Kahle, Extreme values of permutation statistics, \emph{Electron. J. Combin.} \textbf{31}(3) (2024), Paper No.~P3.10. \url{https://doi.org/10.37236/12465}; results are cited by the numbering of the corrected version \url{https://arxiv.org/abs/2205.01426v3}
+
+\bibitem{Fer20}
+V.~F\'eray, On the central limit theorem for the two-sided descent statistics in Coxeter groups, \emph{Electron. Commun. Probab.} \textbf{25} (2020), 1--6. \url{https://doi.org/10.1214/20-ECP309}
+
+\bibitem{Fel71}
+W.~Feller, \emph{An Introduction to Probability Theory and Its Applications}, Vol.~II, 2nd ed., Wiley, New York, 1971.
+
+\bibitem{FMN16}
+V.~F\'eray, P.-L.~M\'eliot and A.~Nikeghbali, \emph{Mod-$\phi$ Convergence: Normality Zones and Precise Deviations}, SpringerBriefs in Probability and Mathematical Statistics, Springer, Cham, 2016. \url{https://doi.org/10.1007/978-3-319-46822-8}; results are cited by the numbering of \url{https://arxiv.org/abs/1304.2934v4}
+
+\bibitem{HST24}
+N.~Heerten, H.~Sambale and C.~Th\"ale, Probabilistic limit theorems induced by the zeros of polynomials, \emph{Math. Nachr.} \textbf{297} (2024), 1772--1792. \url{https://doi.org/10.1002/mana.202300109}
+
+\bibitem{Hwa96}
+H.-K.~Hwang, Large deviations for combinatorial distributions. I. Central limit theorems, \emph{Ann. Appl. Probab.} \textbf{6} (1996), 297--319. \url{https://doi.org/10.1214/aoap/1034968075}
+
+\bibitem{Pet13}
+T.~K.~Petersen, Two-sided Eulerian numbers via balls in boxes, \emph{Math. Mag.} \textbf{86} (2013), 159--176. \url{https://arxiv.org/abs/1209.6273}
+
+\bibitem{Vat96}
+V.~A.~Vatutin, The numbers of ascending segments in a random permutation and in one inverse to it are asymptotically independent, \emph{Diskret. Mat.} \textbf{8}(1) (1996), 41--51; English transl. in \emph{Discrete Math. Appl.} \textbf{6}(1) (1996), 41--52. \url{https://doi.org/10.4213/dm515}
+
+\bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026, \url{https://github.com/yspennstate/math-brain-public}.
+
+\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research}, October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
+
+\bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026, \url{https://github.com/yspennstate/brain-framework-public}.
+
+\end{thebibliography}
+
+\end{document}
